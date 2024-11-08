@@ -1,20 +1,26 @@
-int calculateScore(Map<String, int> team) {
-  return team.entries.fold(0, (points, entry) {
-    switch (entry.key) {
-      case 'Free throws':
-        return points + entry.value;
-      case '2 pointers':
-        return points + entry.value * 2;
-      case '3 pointers':
-        return points + entry.value * 3;
-      default:
-        return points;
+int score(Map<String, int> team) {
+  int points = 0;
+  team.forEach((key, value) {
+    if (key == 'Free throws') {
+      points += value;
+    } else if (key == '2 pointers') {
+      points += value * 2;
+    } else if (key == '3 pointers') {
+      points += value * 3;
     }
   });
+
+  return points;
 }
 
-int determineWinner(Map<String, int> teamA, Map<String, int> teamB) {
-  int scoreA = calculateScore(teamA);
-  int scoreB = calculateScore(teamB);
-  return scoreA.compareTo(scoreB);
+int whoWins(Map<String, int> teamA, Map<String, int> teamB) {
+  int scoreA = score(teamA);
+  int scoreB = score(teamB);
+  if (scoreA > scoreB) {
+    return 1;
+  }
+  if (scoreA < scoreB) {
+    return 2;
+  }
+  return 0;
 }
