@@ -6,3 +6,4 @@ Future<String> getUserId() async {
   var response = json.decode(stringResponse);
   return response["id"];
 }
+
