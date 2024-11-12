@@ -1,5 +1,5 @@
 import '4-get_sum.dart';
 
-void main() async {
+main() async {
   print(await calculateTotal());
 }
